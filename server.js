@@ -13,10 +13,23 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+// Installed Twilio API
+const accountSid = "ACcf01c4322b7094fbc62d90eda7a58c35";
+const authToken = "2a9421df41b4b60d4620602ff484eb60";
 
-const keyPublishable = process.env.PUBLISHABLE_KEY;
-const keySecret = process.env.SECRET_KEY;
-const stripe = require("stripe")(keySecret);
+const client = require('twilio')(accountSid, authToken);
+
+client.calls.create({
+  url: "https://demo.twilio.com/welcome/voice/",
+  to: "+16046556558",
+  from: "+14387937553"
+}, function(err, call) {
+  process.stdout.write(call.sid);
+});
+
+// const keyPublishable = process.env.PUBLISHABLE_KEY;
+// const keySecret = process.env.SECRET_KEY;
+// const stripe = require("stripe")(keySecret);
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
