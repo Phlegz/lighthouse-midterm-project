@@ -8,7 +8,7 @@
         <!-- Appetizers from the database -->
 		<h2><a id="appetizer" name="appetizer">Appetizers</a></h2>
 		<div class="row">
-			<%for(appetizer of dishes) { %>
+			<%for(appetizer of appies) { %>
 			<div class="col-sm-6 col-md-3">
 				<div class="thumbnail">
 					<img alt="samplefood" src="<%= appetizer.image_url %>">
@@ -16,7 +16,7 @@
 						<h3><%- appetizer.name %></h3>
 						<p><%- appetizer.description %></p>
 						<p>$<%- appetizer.price %></p>
-						<p><a class="btn btn-primary" href="#" role="button">Add to Order</a></p>
+						<p><a class="btn btn-primary add-to-cart" href="#" role="button">Add to Order</a></p>
 					</div>
 				</div>
 			</div><%} %>
@@ -25,7 +25,7 @@
         <!-- Looping through main dishes from the database -->
 		<h2><a id="main" name="main">Main Dishes</a></h2>
 		<div class="row">
-			<%for(appetizer of dishes) { %>
+			<%for(appetizer of appies) { %>
 			<div class="col-sm-6 col-md-3">
 				<div class="thumbnail">
 					<img alt="samplefood" src="<%= appetizer.image_url %>">
@@ -42,7 +42,7 @@
         <!-- Looping through the desserts from the database -->
 		<h2><a id="dessert" name="dessert">Dessert</a></h2>
 		<div class="row">
-			<%for(appetizer of dishes) { %>
+			<%for(appetizer of appies) { %>
 			<div class="col-sm-6 col-md-3">
 				<div class="thumbnail">
 					<img alt="samplefood" src="<%= appetizer.image_url %>">
@@ -59,7 +59,7 @@
         <!-- Looping through beverages from the database -->
 		<h2><a id="beverage" name="beverage">Beverages</a></h2>
 		<div class="row">
-			<%for(appetizer of dishes) { %>
+			<%for(appetizer of appies) { %>
 			<div class="col-sm-6 col-md-3">
 				<div class="thumbnail">
 					<img alt="samplefood" src="<%= appetizer.image_url %>">
@@ -67,7 +67,7 @@
 						<h3><%- appetizer.name %></h3>
 						<p><%- appetizer.description %></p>
 						<p>$<%- appetizer.price %></p>
-						<p><a class="btn btn-primary" href="#" role="button">Add to Order</a></p>
+						<p><a class="btn btn-primary add-to-cart" href="#" role="button">Add to Order</a></p>
 					</div>
 				</div>
 			</div><%} %>

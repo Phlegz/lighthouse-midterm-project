@@ -1,10 +1,6 @@
-$(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });;
+$(function() {
+  $('.menu').on('click', '.add-to-cart', function(e) {
+    e.preventDefault();
+    console.log('adding item to cart');
+  })
 });
