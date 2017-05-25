@@ -14,6 +14,10 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
+const keyPublishable = process.env.PUBLISHABLE_KEY;
+const keySecret = process.env.SECRET_KEY;
+const stripe = require("stripe")(keySecret);
+
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 
@@ -41,6 +45,10 @@ app.use("/api/users", usersRoutes(knex));
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
+});
+// Checkout page
+app.post("/", (req, res) => {
+
 });
 
 app.listen(PORT, () => {
