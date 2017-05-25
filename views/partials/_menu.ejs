@@ -1,40 +1,77 @@
-<section class="menu">
-    <h2><a id="appetizer" name="appetizer">Appetizers</a></h2>
-    <div class="row">
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img alt="samplefood" src="http://i2.cdn.cnn.com/cnnnext/dam/assets/160222143029-indonesian-food-kangkung-7028-1900px-super-169.jpg">
-                <div class="caption">
-                    <h3>Kangkung</h3>
-                    <p>Description here</p>
-                    <p><a class="btn btn-primary" href="#" role="button">Add to Order</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img alt="samplefood" src="http://i2.cdn.cnn.com/cnnnext/dam/assets/160222143029-indonesian-food-kangkung-7028-1900px-super-169.jpg">
-                <div class="caption">
-                    <h3>Kangkung</h3>
-                    <p>Description here</p>
-                    <p><a class="btn btn-primary" href="#" role="button">Add to Order</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img alt="samplefood" src="http://i2.cdn.cnn.com/cnnnext/dam/assets/160222143029-indonesian-food-kangkung-7028-1900px-super-169.jpg">
-                <div class="caption">
-                    <h3>Kangkung</h3>
-                    <p>Description here</p>
-                    <p><a class="btn btn-primary" href="#" role="button">Add to Order</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <h2><a id="main" name="main">Main Dishes</a></h2>
-        <h2><a id="beverage" name="beverage">Beverages</a></h2>
-        <h2><a id="dessert" name="dessert">Dessert</a></h2>
-    </div>
-</section>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<section class="menu">
+        <!-- Appetizers from the database -->
+		<h2><a id="appetizer" name="appetizer">Appetizers</a></h2>
+		<div class="row">
+			<%for(appetizer of dishes) { %>
+			<div class="col-sm-6 col-md-3">
+				<div class="thumbnail">
+					<img alt="samplefood" src="<%= appetizer.image_url %>">
+					<div class="caption">
+						<h3><%- appetizer.name %></h3>
+						<p><%- appetizer.description %></p>
+						<p>$<%- appetizer.price %></p>
+						<p><a class="btn btn-primary" href="#" role="button">Add to Order</a></p>
+					</div>
+				</div>
+			</div><%} %>
+		</div>
+
+        <!-- Looping through main dishes from the database -->
+		<h2><a id="main" name="main">Main Dishes</a></h2>
+		<div class="row">
+			<%for(appetizer of dishes) { %>
+			<div class="col-sm-6 col-md-3">
+				<div class="thumbnail">
+					<img alt="samplefood" src="<%= appetizer.image_url %>">
+					<div class="caption">
+						<h3><%- appetizer.name %></h3>
+						<p><%- appetizer.description %></p>
+						<p>$<%- appetizer.price %></p>
+						<p><a class="btn btn-primary" href="#" role="button">Add to Order</a></p>
+					</div>
+				</div>
+			</div><%} %>
+		</div>
+
+        <!-- Looping through the desserts from the database -->
+		<h2><a id="dessert" name="dessert">Dessert</a></h2>
+		<div class="row">
+			<%for(appetizer of dishes) { %>
+			<div class="col-sm-6 col-md-3">
+				<div class="thumbnail">
+					<img alt="samplefood" src="<%= appetizer.image_url %>">
+					<div class="caption">
+						<h3><%- appetizer.name %></h3>
+						<p><%- appetizer.description %></p>
+						<p>$<%- appetizer.price %></p>
+						<p><a class="btn btn-primary" href="#" role="button">Add to Order</a></p>
+					</div>
+				</div>
+			</div><%} %>
+		</div>
+
+        <!-- Looping through beverages from the database -->
+		<h2><a id="beverage" name="beverage">Beverages</a></h2>
+		<div class="row">
+			<%for(appetizer of dishes) { %>
+			<div class="col-sm-6 col-md-3">
+				<div class="thumbnail">
+					<img alt="samplefood" src="<%= appetizer.image_url %>">
+					<div class="caption">
+						<h3><%- appetizer.name %></h3>
+						<p><%- appetizer.description %></p>
+						<p>$<%- appetizer.price %></p>
+						<p><a class="btn btn-primary" href="#" role="button">Add to Order</a></p>
+					</div>
+				</div>
+			</div><%} %>
+		</div>
+	</section>
+</body>
+</html>
