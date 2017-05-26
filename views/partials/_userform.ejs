@@ -1,21 +1,21 @@
 
 <section class="userdetails"> 
     <h3>Delivery Details</h3>
-    <form action="/" method="POST">
-        <input type="text" name="first_name" placeholder="First name">
-        <input type="text" name="last_name" placeholder="Last name"><br>
-        <input type="text" name="street" placeholder="Street Address"><br>
-        <input type="text" name="city" placeholder="City">
-        <input type="text" name="region" placeholder="Province"><br>
-        <input type="text" name="postal_code" placeholder="Postal Code"><br>
+    <form class="userform" action="/" method="POST">
+        <input type="text" name="first_name" placeholder="First name" required>
+        <input type="text" name="last_name" placeholder="Last name" required><br>
+        <input type="text" name="street" placeholder="Street Address" required><br>
+        <input type="text" name="city" placeholder="City" required>
+        <input type="text" name="region" placeholder="Province" required><br>
+        <input type="text" name="postal_code" placeholder="Postal Code" required><br>
 
-        <input type="number" name="phone" placeholder="Phone Number"><br>
-        <input type="email" name="email" placeholder="Email Address"><br>
+        <input type="number" name="phone" placeholder="Phone Number" required><br>
+        <input type="email" name="email" placeholder="Email Address" required><br>
 
 
         <textarea name="text" placeholder="Optional Delivery Instructions"></textarea><br>
 
-        <select name="payment_method">
+        <select name="payment_method" required>
             <option value="creditcard">Credit Card</option>
             <option value="debit">Debit</option>
             <option value="cash">Cash</option>
