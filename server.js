@@ -28,7 +28,7 @@ let order = {
   city: "Vancouver",
   region: "BC",
   postal_code: "V5N 4H9"
-  payment: "cash",
+  payment_method: "cash",
   total_paid_in_cents: "83",
   line_items: [{
     dish_id: "22",
@@ -85,6 +85,7 @@ app.post("/", (req, res) => {
     city: req.body.city,
     region: req.body.region,
     restaurant_id: req.body.restaurant_id,
+    payment_method: req.body.payment_method,
     total_paid_in_cents: req.body.total_paid_in_cents,
     line_items: {
       dish_id: req.body.dish_id,
