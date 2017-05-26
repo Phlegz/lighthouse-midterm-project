@@ -8,10 +8,6 @@ require('dotenv').config();
 const express = require('express');
 const router  = express.Router();
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = require('twilio')(accountSid, authToken);
-
 module.exports = (knex) => {
 
   // Home page
@@ -40,15 +36,6 @@ module.exports = (knex) => {
     res.redirect("/order_id")
   });
 
-  router.post("/call", (req, res) => {
-    client.calls.create({
-      url: "https://demo.twilio.com/welcome/voice/",
-      to: "+16046556558",
-      from: "+14387937553"
-    }, function(err, call) {
-      process.stdout.write(call.sid);
-    });
-  })
 
   // restaurant page
   router.get("/restaurant/:restaurant_id/order_id", (req, res) => {
@@ -59,15 +46,6 @@ module.exports = (knex) => {
     res.render("order_confirmation")
   });
 
-  router.post("/message", (req, res) => {
-    client.messages.create({
-      body: "Your order is ready in 10 minutes?",
-      to: "+16046556558",
-      from: "+14387937553"
-    }, function(err, message) {
-      process.stdout.write(message.sid);
-    });
-  })
   return router;
 }
 
