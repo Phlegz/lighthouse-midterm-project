@@ -16,14 +16,13 @@ $(function() {
   //when any 'add to cart' button is pressed it passes a JSON with the dish info 
   //to the renderOrder function
   //if the button is pressed more than once, it updates the quanity 
-
-function orderIncrement(amount) {
-  console.log("AMOUNT", amount);
-  var id = this.dataset.id;
-  var name = this.dataset.name;
-  var price = this.dataset.price;
+  $('.menu').on('click', '.add-to-cart', function(event) {
+    event.preventDefault();
+    var id = this.dataset.id;
+    var name = this.dataset.name;
+    var price = this.dataset.price;
     if (order[id]) {
-      order[id].qty + amount;
+      order[id].qty++;
     } else {
       order[id] = {
         name,
@@ -32,15 +31,12 @@ function orderIncrement(amount) {
       };
     }
     localStorage.order = JSON.stringify(order);
+
+    console.log("ORDERS ARE: " + JSON.stringify(order));
+   
     renderOrder(order);
-} 
-
-  $('.menu').on('click', '.add-to-cart', function(event) {
-    orderIncrement(1);
   });
-
 });
-
 
 
 //added function to global scope 
