@@ -67,40 +67,6 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 
-// app.post("/")
-
-// Checkout
-app.post("/", (req, res) => {
-  order = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    phone: req.body.phone,
-    street: req.body.street_name,
-    city: req.body.city,
-    region: req.body.region,
-    restaurant_id: req.body.restaurant_id,
-    payment_method: req.body.payment_method,
-    total_paid_in_cents: req.body.total_paid_in_cents,
-    line_items: {
-      dish_id: req.body.dish_id,
-      quantity: req.body.quantity
-    }
-  }
-  res.redirect("/order_id")
-});
-
-// restaurant page
-app.get("/restaurant/:restaurant_id/order_id", (req, res) => {
-  if (order.order_id != req.params.order_id) {
-    res.status(404).send("You do not any orders that match this order id");
-    return;
-  }
-  res.render("order_confirmation")
-});
-
-// app.post("/")
-
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
