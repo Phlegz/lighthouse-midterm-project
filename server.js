@@ -19,28 +19,28 @@ const uuidV4 = require ("uuid/v4");
 uuidV4();
 console.log(uuidV4());
 // TODO : uuid middleware
-const order = {
-  order_id: "22d3f3",
-  customer_info: {
-    firstName: "Tin",
-    lastName: "Dang",
-    email: "tindang1710@gmail.com",
-    phone: "604-655-6558",
-    address: {
-      street: "4231 Beatrice",
-      city: "Vancouver",
-      region: "BC",
-      postalCode: "V5N 4H9"
-    },
-    payment: "Visa",
-    total_paid: "83"
-  },
-  time: {
-    created_at: "12:00 PM",
-    updated_at: "12:02 PM"
-  },
+let order = {
+  first_name: "Tin",
+  last_name: "Dang",
+  email: "tindang1710@gmail.com",
+  phone: "604-655-6558",
+  street: "4231 Beatrice",
+  city: "Vancouver",
+  region: "BC",
+  postal_code: "V5N 4H9"
+  payment: "cash",
+  total_paid_in_cents: "83",
+  line_items: [{
+    dish_id: "22",
+    quantity: "1"
+  }],
   estimated_completion: "45 mins"
 }
+
+// Step1: create the order in the database with all the order fields firstName -> totalPaid
+// Step2: get the id from the new created order
+// Step3: for each element in lineItems create new line_item in database with dishId and orderId and quantity
+
 // const keyPublishable = process.env.PUBLISHABLE_KEY;
 // const keySecret = process.env.SECRET_KEY;
 // const stripe = require("stripe")(keySecret);
@@ -76,27 +76,32 @@ app.get("/", (req, res) => {
 
 // Checkout
 app.post("/", (req, res) => {
-  const order_id = uuid;
-  const customer_info = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
+  order = {
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
     email: req.body.email,
-    phone: req.body.phone
-  };
-  const address = {
+    phone: req.body.phone,
     street: req.body.street_name,
     city: req.body.city,
-    region: req.body.region
-  };
-  const created_at = date.now();
-  res.redirect("/order_confirmation")
+    region: req.body.region,
+    restaurant_id: req.body.restaurant_id,
+    total_paid_in_cents: req.body.total_paid_in_cents,
+    line_items: {
+      dish_id: req.body.dish_id,
+      quantity: req.body.quantity
+    }
+  }
+  res.redirect("/order_id")
 });
 
 // restaurant page
-// app.get("/restaurant/:restaurant_id/order_id", (req, res) => {
-//   const
-//   res.render("order_confirmation")
-// });
+app.get("/restaurant/:restaurant_id/order_id", (req, res) => {
+  if (order.order_id != req.params.order_id) {
+    res.status(404).send("You do not any orders that match this order id");
+    return;
+  }
+  res.render("order_confirmation")
+});
 
 // app.post("/")
 
