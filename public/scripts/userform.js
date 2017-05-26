@@ -1,13 +1,23 @@
- $(".userdetails").hide();
-  $(".btn btn-primary submit").hide();
+$(function() {
 
-$(".btn btn-primary continue-button").click(function() {
+$(".userdetails").hide();
+$(".edit-order").hide();
+
+//the user form pops out and the edit button appears and the menu hides
+$(".continue-button").click(function() {
+    $(".edit-order").show();
+    $(".userdetails").show();
+    $(".menu").hide();
+    $(".continue-button").hide();
+ // set error message if there are no items in the cart
 
 });
-
-//   //toggles the compose form when the 'compose' button is clicked and scrolls to the top
-//   $("button").click(function() {
-//     $(".new-tweet").slideToggle();
-//     $('textarea').focus();
-//     $("body").scrollTop(0);
-//   });
+//if the edit button is pressed the menu comes back and the form hides
+$(".edit-order").click(function(){
+    $(".userdetails").hide();
+    $(".edit-order").hide();
+    $(".menu").show();
+    $(".continue-button").show();
+    
+})
+});
