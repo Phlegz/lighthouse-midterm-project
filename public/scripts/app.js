@@ -1,8 +1,5 @@
 $(function() {
 
-  function makeLineItemHTML(lineItem) {
-  }
-
   function makeOrderSummaryHTML(order) {
     // loop over lineItems
       // call the aboec function makeLineItemHTML
@@ -10,32 +7,32 @@ $(function() {
     // build into a big ol' <div>, return it
   }
 
-  function populateOrderSummary(item) {
+  function makeLineItemHTML(item) {
     var html = `
-        <ul><p>${escape(item.qty)}</p>
-        <p>${escape(item.name)}</p>
-        <p>${escape(item.price)}</p>
-        </ul>
+        <ul>${escape(item.qty)} ${escape(item.name)} ${escape(item.price)}</ul>
     `;
     return html;
   }
 
-function renderOrder(order) {
-  var $orderContainer = $('#order-container');
-  $orderContainer.empty();
-  Object.keys(order).forEach(function(key) {
-    let item = order[key];
-    $orderContainer.prepend(populateOrderSummary(item));
-  });
-};
+  function renderOrder(order) {
+    var $orderContainer = $('#order-container');
+    $orderContainer.empty();
+    Object.keys(order).forEach(function(key) {
+      var item = order[key];
+      $orderContainer.prepend(makeLineItemHTML(item));
+    });
+  }
 
   var order = {};
 
   if (localStorage.order) {
-    // console.log(localStorage.order);
     order = JSON.parse(localStorage.order);
   }
 
+
+  //when any 'add to cart' button is pressed it passes a JSON with the dish info 
+  //to the renderOrder function
+  //if the button is pressed more than once, it updates the quanity 
   $('.menu').on('click', '.add-to-cart', function(event) {
     event.preventDefault();
     var id = this.dataset.id;
@@ -55,6 +52,5 @@ function renderOrder(order) {
     console.log("ORDERS ARE: " + JSON.stringify(order));
    
     renderOrder(order);
-   });
-  
+  });
 });
