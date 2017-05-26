@@ -14,16 +14,15 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
-
 const uuidV4 = require ("uuid/v4");
-uuidV4();
-console.log(uuidV4());
+
 // const keyPublishable = process.env.PUBLISHABLE_KEY;
 // const keySecret = process.env.SECRET_KEY;
 // const stripe = require("stripe")(keySecret);
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
+const twilioRoutes = require("./routes/twilio");
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -46,6 +45,8 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
+app.use("/twilio", twilioRoutes())
+// twilio
 app.get("/", (req, res) => {
   res.render("index");
 })
