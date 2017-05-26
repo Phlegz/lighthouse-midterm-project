@@ -10,37 +10,34 @@ $(function() {
     // build into a big ol' <div>, return it
   }
 
-  function redrawOrderSummary(order) {
+  function populateOrderSummary(item) {
     var html = `
-      <article>
-          <header>
-            <h3>${escape(tweet.user.handle)}</h3>
-            <img class="avatar" src="${tweet.user.avatars.regular}">
-            <h2>${escape(tweet.user.name)}</h2>
-          </header>
-          <p>${escape(tweet.content.text)} </p>
-          <footer>
-            <img class=icon src="images/heart-icon.png">
-            <img class=icon src="images/retwitt-icon.png">
-            <img class=flag-icon src="images/flag-icon.png">
-            <p>${moment(tweet.created_at).startOf('hour').fromNow()}</p>
-          </footer>
-        </article>
+        <ul><p>${escape(item.qty)}</p>
+        <p>${escape(item.name)}</p>
+        <p>${escape(item.price)}</p>
+        </ul>
     `;
     return html;
   }
 
-
+function renderOrder(order) {
+  var $orderContainer = $('#order-container');
+  $orderContainer.empty();
+  Object.keys(order).forEach(function(key) {
+    let item = order[key];
+    $orderContainer.prepend(populateOrderSummary(item));
+  });
+};
 
   var order = {};
 
   if (localStorage.order) {
-    console.log("lso", localStorage.order);
+    // console.log(localStorage.order);
     order = JSON.parse(localStorage.order);
   }
 
-  $('.menu').on('click', '.add-to-cart', function(e) {
-    e.preventDefault();
+  $('.menu').on('click', '.add-to-cart', function(event) {
+    event.preventDefault();
     var id = this.dataset.id;
     var name = this.dataset.name;
     var price = this.dataset.price;
@@ -53,14 +50,11 @@ $(function() {
         qty: 1
       };
     }
-
     localStorage.order = JSON.stringify(order);
 
-    console.log(JSON.stringify(order));
-
-    // at same time use $ to change cart html on page so cart updates visually to user
-    redrawOrderSummary(order);
-  });
+    console.log("ORDERS ARE: " + JSON.stringify(order));
+   
+    renderOrder(order);
+   });
+  
 });
-
- 
