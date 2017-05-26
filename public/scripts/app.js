@@ -7,28 +7,11 @@ $(function() {
     // build into a big ol' <div>, return it
   }
 
-  function makeLineItemHTML(item) {
-    var html = `
-        <ul>${escape(item.qty)} ${escape(item.name)} ${escape(item.price)}</ul>
-    `;
-    return html;
-  }
-
-  function renderOrder(order) {
-    var $orderContainer = $('#order-container');
-    $orderContainer.empty();
-    Object.keys(order).forEach(function(key) {
-      var item = order[key];
-      $orderContainer.prepend(makeLineItemHTML(item));
-    });
-  }
-
   var order = {};
 
   if (localStorage.order) {
     order = JSON.parse(localStorage.order);
   }
-
 
   //when any 'add to cart' button is pressed it passes a JSON with the dish info 
   //to the renderOrder function
@@ -54,4 +37,23 @@ $(function() {
     renderOrder(order);
   });
 });
+
+//added function to global scope 
+function renderOrder() {
+    function makeLineItemHTML(item) {
+      var html = `
+          <ul>${escape(item.qty)} ${escape(item.name)} ${escape(item.price)}
+          <img class= "plus" src="/images/plus.png" height="10px"><img class= "minus" src="/images/minus.png" height="10px">
+          </ul>
+      `;
+      return html;
+    }
+    order = JSON.parse(localStorage.order);
+    var $orderContainer = $('#order-container');
+    $orderContainer.empty();
+    Object.keys(order).forEach(function(key) {
+      var item = order[key];
+      $orderContainer.prepend(makeLineItemHTML(item));
+    });
+  }
 
