@@ -13,20 +13,34 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
-// Installed Twilio API
-const accountSid = "ACcf01c4322b7094fbc62d90eda7a58c35";
-const authToken = "2a9421df41b4b60d4620602ff484eb60";
 
-const client = require('twilio')(accountSid, authToken);
 
-client.calls.create({
-  url: "https://demo.twilio.com/welcome/voice/",
-  to: "+16046556558",
-  from: "+14387937553"
-}, function(err, call) {
-  process.stdout.write(call.sid);
-});
-
+const uuidV4 = require ("uuid/v4");
+uuidV4();
+console.log(uuidV4());
+// TODO : uuid middleware
+const order = {
+  order_id: "22d3f3",
+  customer_info: {
+    firstName: "Tin",
+    lastName: "Dang",
+    email: "tindang1710@gmail.com",
+    phone: "604-655-6558",
+    address: {
+      street: "4231 Beatrice",
+      city: "Vancouver",
+      region: "BC",
+      postalCode: "V5N 4H9"
+    },
+    payment: "Visa",
+    total_paid: "83"
+  },
+  time: {
+    created_at: "12:00 PM",
+    updated_at: "12:02 PM"
+  },
+  estimated_completion: "45 mins"
+}
 // const keyPublishable = process.env.PUBLISHABLE_KEY;
 // const keySecret = process.env.SECRET_KEY;
 // const stripe = require("stripe")(keySecret);
@@ -59,10 +73,32 @@ app.use("/api/users", usersRoutes(knex));
 app.get("/", (req, res) => {
   res.render("index");
 });
-// Checkout page
-app.post("/", (req, res) => {
 
+// Checkout
+app.post("/", (req, res) => {
+  const order_id = uuid;
+  const customer_info = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phone: req.body.phone
+  };
+  const address = {
+    street: req.body.street_name,
+    city: req.body.city,
+    region: req.body.region
+  };
+  const created_at = date.now();
+  res.redirect("/order_confirmation")
 });
+
+// restaurant page
+// app.get("/restaurant/:restaurant_id/order_id", (req, res) => {
+//   const
+//   res.render("order_confirmation")
+// });
+
+// app.post("/")
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
