@@ -20,7 +20,8 @@
     "node-sass-middleware": "^0.9.8",
     "pg": "^6.0.2",
     "stripe": "^4.20.0",
-    "twilio": "^3.3.0"
+    "twilio": "^3.3.0",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.9.2",
