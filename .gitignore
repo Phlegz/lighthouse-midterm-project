@@ -4,6 +4,5 @@ public/styles
 *.log
 *.sqlite3
 .DS_Store
-testing.js
-play_around.js
+
 

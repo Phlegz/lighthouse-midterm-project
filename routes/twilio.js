@@ -9,25 +9,32 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 
 const client = twilio(accountSid, authToken);
-const VoiceResponse = twilio.twiml.VoiceResponse;
 
 module.exports = () => {
-  router.post("/call", (req, res) => {
+  router.post("/call/twiml" , (req, res) => {
+    res.render("twiml");
+  });
+
+  // router.post("/call", (req, res) => {
     client.calls.create({
-      url: "https://demo.twilio.com/welcome/voice/",
+      url: "https://2a555f13.ngrok.io/twilio/call/twiml",
       to: "+16046556558",
       from: "+14387937553"
     }, function(err, call) {
       process.stdout.write(call.sid);
     });
-    res.send("We're calling you");
-  })
+  // })
+
+
+
+
 
   router.post("/message", (req, res) => {
+    let customerNum = "+16046556558";
     client.messages.create({
       body: "Your order is ready in 10 minutes",
-      to: "+16046556558",
-      from: "+14387937553"
+      to: customerNum,
+      from: twilioNum
     }, function(err, message) {
       process.stdout.write(message.sid);
     });
