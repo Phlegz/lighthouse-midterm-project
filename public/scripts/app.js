@@ -8,25 +8,27 @@ function renderOrder() {
     `;
     return html;
   }
-  function makeOrderSummaryHTML(order) {
-    // loop over lineItems
-      // call the above function makeLineItemHTML
-      // also get the price and do some arithmetic
-    // build into a big ol' <div>, return it
-  }
 
 
 
+  //loops through the order and calcultes subtotal, tax, and total
   order = JSON.parse(localStorage.order);
   var $orderContainer = $('#order-container');
   $orderContainer.empty();
   var subTotal = 0;
+  var taxRates = 0.07;
+  var tax = 0;
+  var total = 0;
   Object.keys(order).forEach(function(key) {
     var item = order[key];
     $orderContainer.prepend(makeLineItemHTML(item));
-    subTotal += item.price * item.qty
+    subTotal += item.price * item.qty;
+    tax = subTotal * taxRates;
+    total = subTotal + tax;
   });
   $('#totals .subtotal span').text(subTotal);
+  $('#totals .tax span').text(tax);
+  $('#totals .total span').text(total);
 }
 
 $(function() {

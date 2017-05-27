@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta charset="UTF-8">
 	<title>Bali Buda</title>
-  <!-- bootstrap stylesheet -->
+
 	<link href="/styles/layout.css" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
+
 	<script src="/vendor/jquery-3.0.0.js"></script>
 </head>
 <body>
 	<%- include partials/_navbar.ejs %>
-	<div class="slideshow"><img src="/images/slideshowimage.png" style="height:428px;"></div>
+	<div class="restaurant-image"><img src="/images/restaurant-image.png" style="height:428px;"></div>
 	<div class="restaurant-info">
 		<p>Address: Jl. Jembawan 1 No.1, Ubud, Gianyar, Kabupaten Gianyar, Bali 80571, Indonesia</p>
 		<p>Phone Number: +62 361 976324</p>
@@ -17,20 +20,25 @@
 	</div>
 	<main class="menu-container">
 		<section class="sidenav">
-			<a href="#appies">Appetizers</a> <a href="#mains">Main Dishes</a> <a href="#desserts">Dessert</a> <a href="#beverages">Beverages</a>
+			<a href="#appies">Appetizers</a><br>
+			<a href="#mains">Main Dishes</a><br>
+			<a href="#desserts">Dessert</a><br>
+			<a href="#beverages">Beverages</a>
 		</section>
 		<section class="icon-key">
-		<img src="/images/vegan_icon.png" style="height:28px;"><h5>Vegan</h5>
-		<img src="/images/vegetarian_icon.png" style="height:28px;"><h5>Vegtarian</h5>
-		<img src="/images/glutenfree_icon.png" style="height:28px;"><h5>Gluten Free</h5>
-		<img src="/images/oceanwise_icon.png" style="height:28px;"><h5>Ocean Wise</h5>
+			<img src="/images/vegan_icon.png" style="height:28px;"><h5>Vegan</h5>
+			<img src="/images/vegetarian_icon.png" style="height:28px;"><h5>Vegtarian</h5>
+			<img src="/images/glutenfree_icon.png" style="height:28px;"><h5>Gluten Free</h5>
+			<img src="/images/oceanwise_icon.png" style="height:28px;"><h5>Ocean Wise</h5>
 		</section>
 		<%- include partials/_menu.ejs %>
 	</main>
 	<%- include partials/_userform.ejs %>
 	<%- include partials/_ordersummary.ejs %>
+
 	<script src="/scripts/app.js"></script>
 	<script src="/scripts/userform.js"></script>
+	<script src="/scripts/twillo.js"></script>
 </body>
 </html>
 
