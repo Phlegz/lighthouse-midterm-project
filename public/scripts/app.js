@@ -47,7 +47,7 @@ $(function() {
       order[id].qty += amount;
       if (order[id].qty < 1 ) {
         delete order[id];
-      } 
+      }
     } else {
       order[id] = {
       id,
@@ -64,7 +64,7 @@ $(function() {
     event.preventDefault();
     orderIncrement(this.dataset, 1);
   });
-  
+
   $('body').on('click', '.plus', function(event) {
     event.preventDefault();
     orderIncrement(this.dataset, 1);
@@ -75,5 +75,5 @@ $(function() {
     orderIncrement(this.dataset, -1);
   });
 
-  
+
 });
