@@ -8,23 +8,30 @@ function renderOrder() {
     `;
     return html;
   }
+  function makeOrderSummaryHTML(order) {
+    // loop over lineItems
+      // call the above function makeLineItemHTML
+      // also get the price and do some arithmetic
+    // build into a big ol' <div>, return it
+  }
+
+
+
   order = JSON.parse(localStorage.order);
   var $orderContainer = $('#order-container');
   $orderContainer.empty();
+  var subTotal = 0;
   Object.keys(order).forEach(function(key) {
     var item = order[key];
     $orderContainer.prepend(makeLineItemHTML(item));
+    subTotal += item.price * item.qty
   });
+  $('#totals .subtotal span').text(subTotal);
 }
 
 $(function() {
 
-  function makeOrderSummaryHTML(order) {
-    // loop over lineItems
-      // call the aboec function makeLineItemHTML
-      // also get the price and do some arithmetic
-    // build into a big ol' <div>, return it
-  }
+
 
   var order = {};
 
@@ -56,7 +63,6 @@ $(function() {
   $('.menu').on('click', '.add-to-cart', function(event) {
     event.preventDefault();
     orderIncrement(this.dataset, 1);
-    
   });
   
   $('body').on('click', '.plus', function(event) {

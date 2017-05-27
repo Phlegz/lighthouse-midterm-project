@@ -10,6 +10,7 @@ $(function() {
     $(".continue-button").hide();
     $(".plus").hide();
     $(".minus").hide();
+    $(".icon-key").hide();
 
   // set error message if there are no items in the cart
 
@@ -22,6 +23,7 @@ $(function() {
     $(".continue-button").show();
     $(".plus").show();
     $(".minus").show();
+    $(".icon-key").show();
 
   });
 
