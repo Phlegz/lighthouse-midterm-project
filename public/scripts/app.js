@@ -1,15 +1,14 @@
 //added function to global scope
 function renderOrder() {
   function makeLineItemHTML(item) {
+    var name = decodeURIComponent(item.name);
     var html = `
-        <div>${escape(item.qty)} ${escape(item.name)} ${escape(item.price)}
+        <div>${escape(item.qty)} ${name} ${escape(item.price/100)}
         <img class= "plus" src="/images/plus.png" data-id="${item.id}" height="10px"><img class= "minus" src="/images/minus.png" data-id="${item.id}" height="10px">
         </div>
     `;
     return html;
   }
-
-
 
   //loops through the order and calcultes subtotal, tax, and total
   order = JSON.parse(localStorage.order);
@@ -26,14 +25,12 @@ function renderOrder() {
     tax = subTotal * taxRates;
     total = subTotal + tax;
   });
-  $('#totals .subtotal span').text(subTotal);
-  $('#totals .tax span').text(tax);
-  $('#totals .total span').text(total);
+  $('#totals .subtotal span').text((subTotal/100).toFixed(2));
+  $('#totals .tax span').text((tax/100).toFixed(2));
+  $('#totals .total span').text((total/100).toFixed(2));
 }
 
 $(function() {
-
-
 
   var order = {};
 
