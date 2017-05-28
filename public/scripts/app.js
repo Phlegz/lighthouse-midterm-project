@@ -1,4 +1,18 @@
 //added function to global scope
+function calculateTotalOrder(order) {
+  var subTotal = 0;
+  var taxRates = 0.07;
+  var tax = 0;
+  var total = 0;
+  Object.keys(order).forEach(function(key) {
+    var item = order[key];
+    subTotal += item.price * item.qty;
+    tax = subTotal * taxRates;
+    total = subTotal + tax;
+  })
+  return total;
+}
+
 function renderOrder() {
   function makeLineItemHTML(item) {
     var name = decodeURIComponent(item.name);
@@ -25,12 +39,28 @@ function renderOrder() {
     tax = subTotal * taxRates;
     total = subTotal + tax;
   });
+
   $('#totals .subtotal span').text((subTotal/100).toFixed(2));
   $('#totals .tax span').text((tax/100).toFixed(2));
   $('#totals .total span').text((total/100).toFixed(2));
 }
 
 $(function() {
+
+  function submitForm() {
+    const $form = $('form');
+    $form.on('submit', (e) => {
+      var total= calculateTotalOrder(order);
+      var newOrder = Object.assign(order,{total:total})
+      $('<input>').attr({
+        type:"hidden",
+        name:'order',
+        value: JSON.stringify(newOrder)
+      }).appendTo($form)
+    })
+  }
+
+  submitForm();
 
   var order = {};
 
