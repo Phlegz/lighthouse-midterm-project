@@ -15,24 +15,24 @@ module.exports = (knex) => {
     .join('dish_genres', 'dish_genres.id', '=', 'dishes.dish_genre_id')
     .select('dishes.id','dishes.dish_genre_id','dishes.name','dish_genres.name as dish_genre_name','price_in_cents','description','vegan','vegetarian','gluten_free','ocean_wise','image_url','restaurant_id')
     .then((dishes) => {
-      var appetizer = [];
-      var main = [];
-      var dessert = [];
-      var beverage = [];
-      var categorizedDishes = {main:main,appetizer:appetizer,dessert:dessert,beverage:beverage}
+      const appetizer = [];
+      const main = [];
+      const dessert = [];
+      const beverage = [];
+      const categorizedDishes = {main:main,appetizer:appetizer,dessert:dessert,beverage:beverage};
       dishes.forEach((dish) => {
         if(dish.dish_genre_name === 'main' ){ main.push(dish); }
-        else if ( dish.dish_genre_name === 'appetizer') {appetizer.push(dish)}
-        else if (dish.dish_genre_name === "dessert") {dessert.push(dish)}
-        else {beverage.push(dish)}
-      })
+        else if ( dish.dish_genre_name === 'appetizer') { appetizer.push(dish); }
+        else if (dish.dish_genre_name === "dessert") { dessert.push(dish); }
+        else { beverage.push(dish); }
+      });
       res.render('index', {dishes:categorizedDishes})
     });
   });
 
   // Checkout
   router.post("/", (req, res) => {
-    const order = JSON.parse(req.body.order)
+    const order = JSON.parse(req.body.order);
     knex.select('id').from('restaurants').orderBy('id').limit(1)
     .then((rows) => {
       //TODO check for row[0].id if it exists
@@ -51,12 +51,12 @@ module.exports = (knex) => {
       .into("orders")
       .returning('id')
       .then((result) => {
-        var a = JSON.parse(req.body.order)
-        let newArr = [];
-        for (var prop in a) {
-          if (prop != 'total') {
-            newArr.push({quantity:a[prop].qty,
-                         dish_id:Number(prop),
+        const order = JSON.parse(req.body.order);
+        const newArr = [];
+        for (const key in order) {
+          if (key != 'total') {
+            newArr.push({quantity:order[key].qty,
+                         dish_id:Number(key),
                          order_id:result[0]
                         });
           }
@@ -64,14 +64,30 @@ module.exports = (knex) => {
         knex('line_items').insert(newArr)
         .returning('order_id')
         .then((id) => {
-          console.log(id[0]);
-          res.redirect(`/order/${id[0]}`)
+          res.redirect(`/order/${id[0]}`);
         });
       });
 
     });
 
   });
+
+// confirmation page
+  router.get("/order/:id", (req, res) => {
+    const table1 = knex('line_items')
+    .select('dish_id','quantity')
+    .where('order_id',req.params.id)
+    .join('dishes','dishes.id','=','dish_id')
+    .select('dish_id','quantity','dishes.name','price_in_cents')
+
+    .then((result) => {
+      res.render("orderconfirmation", {orderSummary:result});
+    })
+  });
+
+
+  return router;
+}
 
 // TODO use session to keep track of users that are not logged in when they order food.
 // if(!req.session.user_id) {
