@@ -11,27 +11,29 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 
 module.exports = () => {
+  twilioNum = "+14387937553"
+
   // route to handle twilio post request
   router.post("/call/twiml", (req, res) => {
     res.render("twiml");
-  })
+  });
   // route to handle post request when customer place an order and inform Twilio to call the restaurant
   router.post("/call", (req, res) => {
     client.calls.create({
       url: "https://614c7384.ngrok.io/order/call/twiml",
       to: "+16046556558",
-      from: "+14387937553"
+      from: twilioNum
     }, function(err, call) {
-        if(err){
-          console.log(err);
-          response.status(500).send(err);
-          return;
-        }
-      });
-    res.redirect("orderconfirmation").end()
+      if(err){
+        console.log(err);
+        res.status(500).send(err);
+        return;
+      }
+    });
+    res.redirect("orderconfirmation").end();
   });
 
-
+  // Twilio send message to customers
   router.post("/message", (req, res) => {
     console.log(req.body.Digits);
     client.messages.create({
@@ -39,11 +41,13 @@ module.exports = () => {
       to: "+16046556558",
       from: "+14387937553"
     }, function(err, message) {
-      if(err)
-      console.log(err);
+      if(err) {
+        console.log(err);
+        res.status(500).send(err);
+      }
     });
-    res.setHeader("Content-Type", "text/xml")
+    res.setHeader("Content-Type", "text/xml");
     res.send(`<?xml version="1.0" encoding="UTF-8"?><Response><Say>thank you, have a good day</Say></Response>`);
-  })
+  });
   return router;
-}
+};
