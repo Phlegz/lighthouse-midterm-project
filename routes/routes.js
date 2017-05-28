@@ -7,50 +7,54 @@
 const express = require("express");
 
 module.exports = (knex) => {
+
   const router  = express.Router();
 
   router.get("/", (req, res) => {
-    console.log('hello');
-    // const order = {
-    //   id:1
-    //   name:'salad'
-    //   price:10
-    //   qty: 1
-    // }
-    // localStorage.order = JSON.stringify(order);
-    // knex.select('id','name','price_in_cents','description','vegan','vegetarian','gluten_free','ocean_wise','image_url','restaurant_id','dish_genre_id').from('dishes')
-    // .then((dishes) => {
-    //   console.log(localStorage.order);
-    //   res.render("index",{dishes})
-    // })
-  });
-
+    knex('dishes')
+    .join('dish_genres', 'dish_genres.id', '=', 'dishes.dish_genre_id')
+    .select('dishes.id','dishes.dish_genre_id','dishes.name','dish_genres.name as dish_genre_name','price_in_cents','description','vegan','vegetarian','gluten_free','ocean_wise','image_url','restaurant_id')
+    .then((dishes) => {
+      var appetizer = [];
+      var main = [];
+      var dessert = [];
+      var beverage = [];
+      var categorizedDishes = {main:main,appetizer:appetizer,dessert:dessert,beverage:beverage}
+      dishes.forEach((dish) => {
+        if(dish.dish_genre_name === 'main' ){ main.push(dish); }
+        else if ( dish.dish_genre_name === 'appetizer') {appetizer.push(dish)}
+        else if (dish.dish_genre_name === "dessert") {dessert.push(dish)}
+        else {beverage.push(dish)}
+      })
+      res.render('index', {dishes:categorizedDishes})
+    })
+  })
 
   // Checkout
   router.post("/", (req, res) => {
 
-    // knex.select('id').from('restaurants').orderBy('id').limit(1)
-    // .then((rows) => {
-    //   //TODO check for row[0].id
-    //   knex.insert({
-    //     restaurant_id: rows[0].id,
-    //     first_name: req.body.first_name,
-    //     last_name: req.body.last_name,
-    //     email: req.body.email,
-    //     phone: req.body.phone,
-    //     street: req.body.street_name,
-    //     city: req.body.city,
-    //     region: req.body.region,
-    //     payment_method: req.body.payment_method,
-    //     total_paid_in_cents: req.body.total_paid_in_cents
-    //   })
-    //   .into("orders")
-    //   .returning('id')
-    //   .then((result) => {
-    //     const items = req.body.item;
-    //     knex(table_name).insert(JSON.parse(req.body.param_name)));
-    //     const lineItemsPromise = knex.insert(JSON.parse(req.body.items))
-    //       console.log(result);
+    knex.select('id').from('restaurants').orderBy('id').limit(1)
+    .then((rows) => {
+      //TODO check for row[0].id
+      knex.insert({
+        restaurant_id: rows[0].id,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        phone: req.body.phone,
+        street: req.body.street_name,
+        city: req.body.city,
+        region: req.body.region,
+        payment_method: req.body.payment_method,
+        total_paid_in_cents: req.body.total_paid_in_cents
+      })
+      .into("orders")
+      .returning('id')
+      .then((result) => {
+        const items = req.body.item;
+        // knex(table_name).insert(JSON.parse(req.body.param_name)));
+        const lineItemsPromise = knex.insert(JSON.parse(req.body.items))
+          console.log(result);
 
         // line_items: [{
         //   dish_id: ,
@@ -68,7 +72,7 @@ module.exports = (knex) => {
   });
 
 
-  // restaurant page
+// confirmation page
   router.get("/order/:id", (req, res) => {
     knex.select(saasd,dads,sdasd).from("orders")
     .then((dishes) => {
