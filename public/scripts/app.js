@@ -8,7 +8,7 @@ function calculateTotalOrder(order) {
     var item = order[key];
     subTotal += item.price * item.qty;
     tax = subTotal * taxRates;
-    total = subTotal + tax;
+    total = Math.round(subTotal + tax);
   })
   return total;
 }
@@ -57,6 +57,7 @@ $(function() {
         name:'order',
         value: JSON.stringify(newOrder)
       }).appendTo($form)
+      localStorage.clear();
     })
   }
 
