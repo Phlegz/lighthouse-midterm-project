@@ -27,15 +27,15 @@ module.exports = (knex) => {
         else {beverage.push(dish)}
       })
       res.render('index', {dishes:categorizedDishes})
-    })
-  })
+    });
+  });
 
   // Checkout
   router.post("/", (req, res) => {
-
+    const order = JSON.parse(req.body.order)
     knex.select('id').from('restaurants').orderBy('id').limit(1)
     .then((rows) => {
-      //TODO check for row[0].id
+      //TODO check for row[0].id if it exists
       knex.insert({
         restaurant_id: rows[0].id,
         first_name: req.body.first_name,
@@ -46,48 +46,33 @@ module.exports = (knex) => {
         city: req.body.city,
         region: req.body.region,
         payment_method: req.body.payment_method,
-        total_paid_in_cents: req.body.total_paid_in_cents
+        total_paid_in_cents: order.total
       })
       .into("orders")
       .returning('id')
       .then((result) => {
-        const items = req.body.item;
-        // knex(table_name).insert(JSON.parse(req.body.param_name)));
-        const lineItemsPromise = knex.insert(JSON.parse(req.body.items))
-          console.log(result);
+        var a = JSON.parse(req.body.order)
+        let newArr = [];
+        for (var prop in a) {
+          if (prop != 'total') {
+            newArr.push({quantity:a[prop].qty,
+                         dish_id:Number(prop),
+                         order_id:result[0]
+                        });
+          }
+        }
+        knex('line_items').insert(newArr)
+        .returning('order_id')
+        .then((id) => {
+          console.log(id[0]);
+          res.redirect(`/order/${id[0]}`)
+        });
+      });
 
-        // line_items: [{
-        //   dish_id: ,
-        //   quantity: req.body.quantity
-        // }]
-
-      })
-      .then(() => {
-        console.log(order);
-        res.redirect("/order_id")
-      })
-    })
-
+    });
 
   });
 
-
-// confirmation page
-  router.get("/order/:id", (req, res) => {
-    knex.select(saasd,dads,sdasd).from("orders")
-    .then((dishes) => {
-      res.render("index",{dishes})
-    })
-    if (order.order_id != req.params.order_id) {
-      res.status(404).send("You do not any orders that match this order id");
-      return;
-    }
-    res.render("order_confirmation")
-  });
-
-  return router;
-}
-
-// use session to keep track of users that are not logged in when they order food.
+// TODO use session to keep track of users that are not logged in when they order food.
 // if(!req.session.user_id) {
   // req.session.user_id = uuidV4
