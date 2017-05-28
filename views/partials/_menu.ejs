@@ -1,4 +1,4 @@
-<div>
+<div class="menu-items">
 	<% function titleize(s) { %>
 		<% return s[0].toUpperCase() + s.slice(1); %>
 	<% } %>
@@ -7,7 +7,7 @@
 	<% for (var genre_id in genres) { %>
 		<% var genre_name = genres[genre_id]; %>
 		<% var dish_list = dishes[genre_name]; %>
-			<section class='menu'>
+			<section class="menu">
 				<h2><a id="<%= genre_name %>" name="<%= genre_name %>"><%= titleize(genre_name) %></a></h2>
 				<div class="row">
 					<% for (var dish_id in dish_list) { %>

@@ -1,39 +1,91 @@
 $baliRed: #ed1c24;
-$green: #5dd1a1;
-$purple: #9e5dd1;
-$yellow: #dad317;
 $lightGrey: #d3d3d3; 
-$darkGrey: #9b9b9b;
+$darkGrey: #606058;
+$background: white;
+
 
 body {
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-  background-color: $lightGrey;
+  background-color: $background;
+} 
+
+h2 {
+  margin: 0;
 }
 
-.slideshow {
-  background-color: white;
+h5 {
+  margin: 0;
+  left: 0;
+  right: 0;
+}
+
+
+.restaurant-image {
+    height: 100vh;
+    margin: 0;
+}
+
+.nav-container {
+  background-color: $background;
+  left: 0;
+  padding: 1em;
+  position: fixed;
+  right: 0;
+  top: 0;    
+  z-index: 3; 
 }
 
 .menu-container {
-  .side-nav {
-      a {
+    display: flex;
+    background-color: $background;
+    position: relative;
+    margin: 0;
+}
+
+  .sidenav {
+        flex: .5; 
         text-decoration: none;
-        color: $darkGrey;
-        float: right;
-        margin: 10px;
-      }
+        color: $lightGrey;
+        margin: 0;
+        border-style: solid;
+        border-width: 1%;
+        border-color: black;
+   }
+  
+  .menu-items {
+    flex: 4;
+      border-style: solid;
+        border-width: 1%;
+        border-color: black;
   }
+
   .icon-key {
-    background-color: white;
+    background-color: $background;
+    margin-bottom: 1%;
+    margin-left: 14.5%;
   }
+
+.restaurant-info {
+  padding: 2em;
+  left: 0;
+  right: 0;
+  background-color: $background;
 }
 
-.menu {
-    h2 {
-      color: $green;
-    }
 
-    .dish-row {
-      background-color: $lightGrey;
-    }
+
+.logo {
+   left: 50%;
+   position: relative;
+   transform: translateX(-50%);
+   height: 6em;
 }
+
+ 
+ .ordersummary {
+   flex: 1.5;
+   border-style: solid;
+        border-width: 1%;
+        border-color: black;
+        margin-left: 2em;
+        margin-right: 2em;
+ }

@@ -9,8 +9,6 @@ function renderOrder() {
     return html;
   }
 
-
-
   //loops through the order and calcultes subtotal, tax, and total
   order = JSON.parse(localStorage.order);
   var $orderContainer = $('#order-container');
