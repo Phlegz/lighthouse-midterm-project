@@ -11,7 +11,7 @@
 	<script src="/vendor/jquery-3.0.0.js"></script>
 </head>
 <body>
-	<%- include partials/_navbar.ejs %>
+	<% include partials/_navbar.ejs %>
 	<div class="restaurant-image"><img src="/images/restaurant-image.png" style="height:428px;"></div>
 	<div class="restaurant-info">
 		<p>Address: Jl. Jembawan 1 No.1, Ubud, Gianyar, Kabupaten Gianyar, Bali 80571, Indonesia</p>
@@ -20,10 +20,10 @@
 	</div>
 	<main class="menu-container">
 		<section class="sidenav">
-			<a href="#appies">Appetizers</a><br>
-			<a href="#mains">Main Dishes</a><br>
-			<a href="#desserts">Dessert</a><br>
-			<a href="#beverages">Beverages</a>
+			<a href="#appetizer">Appetizers</a><br>
+			<a href="#main">Main Dishes</a><br>
+			<a href="#dessert">Dessert</a><br>
+			<a href="#beverage">Beverages</a>
 		</section>
 		<section class="icon-key">
 			<img src="/images/vegan_icon.png" style="height:28px;"><h5>Vegan</h5>
@@ -31,11 +31,10 @@
 			<img src="/images/glutenfree_icon.png" style="height:28px;"><h5>Gluten Free</h5>
 			<img src="/images/oceanwise_icon.png" style="height:28px;"><h5>Ocean Wise</h5>
 		</section>
+		<% include partials/_menu.ejs %>
 	</main>
-	<%- include partials/_userform.ejs %>
-	<%- include partials/_ordersummary.ejs %>
-
-
+	<% include partials/_userform.ejs %>
+	<% include partials/_ordersummary.ejs %>
 	<script src="/scripts/app.js"></script>
 	<script src="/scripts/userform.js"></script>
 	<script src="/scripts/twillo.js"></script>

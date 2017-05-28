@@ -1,7 +1,7 @@
 
 <section class="userdetails">
     <h3>Delivery Details</h3>
-    <form name="userdetails" action="/order/call" method="post">
+    <form class="userform" action="/" method="POST">
         <input type="text" name="first_name" placeholder="First name" required>
         <input type="text" name="last_name" placeholder="Last name" required><br>
         <input type="text" name="street" placeholder="Street Address" required><br>
@@ -20,7 +20,7 @@
             <option value="debit">Debit</option>
             <option value="cash">Cash</option>
         </select>
-        <p><button class="btn btn-primary" type="submit" role="button">Submit Order</button></p>
+        <input class="btn btn-primary" type="submit" value="Submit Order">
+
     </form>
 </section>
-

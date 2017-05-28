@@ -1,15 +1,29 @@
 //added function to global scope
+
+function calculateTotalOrder(order) {
+  var subTotal = 0;
+  var taxRates = 0.07;
+  var tax = 0;
+  var total = 0;
+  Object.keys(order).forEach(function(key) {
+    var item = order[key];
+    subTotal += item.price * item.qty;
+    tax = subTotal * taxRates;
+    total = subTotal + tax;
+  })
+  return total;
+}
+
 function renderOrder() {
   function makeLineItemHTML(item) {
+    var name = decodeURIComponent(item.name);
     var html = `
-        <div>${escape(item.qty)} ${escape(item.name)} ${escape(item.price)}
+        <div>${escape(item.qty)} ${name} ${escape(item.price/100)}
         <img class= "plus" src="/images/plus.png" data-id="${item.id}" height="10px"><img class= "minus" src="/images/minus.png" data-id="${item.id}" height="10px">
         </div>
     `;
     return html;
   }
-
-
 
   //loops through the order and calcultes subtotal, tax, and total
   order = JSON.parse(localStorage.order);
@@ -26,14 +40,28 @@ function renderOrder() {
     tax = subTotal * taxRates;
     total = subTotal + tax;
   });
-  $('#totals .subtotal span').text(subTotal);
-  $('#totals .tax span').text(tax);
-  $('#totals .total span').text(total);
+
+  $('#totals .subtotal span').text((subTotal/100).toFixed(2));
+  $('#totals .tax span').text((tax/100).toFixed(2));
+  $('#totals .total span').text((total/100).toFixed(2));
 }
 
 $(function() {
 
+  function submitForm() {
+    const $form = $('form');
+    $form.on('submit', (e) => {
+      var total= calculateTotalOrder(order);
+      var newOrder = Object.assign(order,{total:total})
+      $('<input>').attr({
+        type:"hidden",
+        name:'order',
+        value: JSON.stringify(newOrder)
+      }).appendTo($form)
+    })
+  }
 
+  submitForm();
 
   var order = {};
 
@@ -49,7 +77,8 @@ $(function() {
       order[id].qty += amount;
       if (order[id].qty < 1 ) {
         delete order[id];
-      } 
+
+      }
     } else {
       order[id] = {
       id,
@@ -66,7 +95,6 @@ $(function() {
     event.preventDefault();
     orderIncrement(this.dataset, 1);
   });
-  
   $('body').on('click', '.plus', function(event) {
     event.preventDefault();
     orderIncrement(this.dataset, 1);
@@ -76,6 +104,4 @@ $(function() {
     event.preventDefault();
     orderIncrement(this.dataset, -1);
   });
-
-  
 });
