@@ -20,7 +20,7 @@ module.exports = () => {
   // route to handle post request when customer place an order and inform Twilio to call the restaurant
   router.post("/call", (req, res) => {
     client.calls.create({
-      url: "https://614c7384.ngrok.io/order/call/twiml",
+      url: "https://8661532f.ngrok.io/twilio/call/twiml",
       to: "+16046556558",
       from: twilioNum
     }, function(err, call) {

@@ -47,9 +47,13 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
+// app.get("/", (req, res) => {
+//   res.render("index");
+// })
+
 app.use("/", Routes(knex));
 
-app.use("/order", twilioRoutes())
+app.use("/twilio", twilioRoutes());
 
 
 
