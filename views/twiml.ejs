@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <Response>
-    <Say voice="woman">You have an order.</Say>
-    <Record maxLength="20" />
+    <Gather numDigits="3" finishOnKey="#" action="/order/message">
+        <Say>You have an order of 4 ramens. Please type the estimated time of completion on your key pad</Say>
+    </Gather>
   </Response>
 
 

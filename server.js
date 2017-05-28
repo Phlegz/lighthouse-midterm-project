@@ -45,11 +45,16 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-app.use("/twilio", twilioRoutes())
+app.use("/order", twilioRoutes())
 // twilio
 app.get("/", (req, res) => {
   res.render("index");
 })
+
+app.get("/order/orderconfirmation", (req, res) => {
+  res.render("orderconfirmation");
+})
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
