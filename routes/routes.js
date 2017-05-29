@@ -32,6 +32,7 @@ module.exports = (knex) => {
   // Checkout
   router.post("/", (req, res) => {
     const order = JSON.parse(req.body.order);
+    console.log(order);
     knex.select('id').from('restaurants').orderBy('id').limit(1)
     .then((rows) => {
       //TODO check for row[0].id if it exists

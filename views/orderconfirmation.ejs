@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Bali Buda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link href="/styles/layout.css" rel="stylesheet">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
+    <title>Bali Buda</title>
 
-	<script src="/vendor/jquery-3.0.0.js"></script>
+    <link href="/styles/layout.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
 </head>
+
 <body>
-    <section class="ordersummary">
-        <h3>Order Confirmation</h3>
+    <% include partials/_navbar.ejs %>
+
+    <div class="restaurant-image"><img src="/images/restaurant-photo.png"></div>
+    <section class="orderconfirmation">
+    <h3>ORDER CONFIRMATION</h3>
     <section id="order-container">
 
-    <!-- products added to the cart will be inserted here -->
-
-    </section>
-
-    <section id="totals">
-        <h5 class="subtotal"><label>Subtotal</label> $<span></span></h5>
-        <h5 class="tax"><label>Tax</label> $<span></span></h5>
-        <h4 class="total"><label>Total</label> $<span></span></h4>
-    </section>
-
+        <div class="order-items">
+			<section class='items'>
+				  <%orderSummary.forEach((order) => { %>
+                  <h4> Order No. 000 <%= order.order_id%></h4>
+                    <h4><%= order.quantity%> <%= order.name%></h4>         
+         </div>
+       <section id="totals">
+		<h5 class="subtotal"><label>SUBTOTAL</label></h5>
+		<h5 class="tax"><label>TAX</label></h5>
+		<h4 class="total"><label>TOTAL</label></h4>
+	</section>
+ <%}) %>
     <script src="/scripts/app.js"></script>
-	<script src="/scripts/userform.js"></script>
-	<script src="/scripts/twillo.js"></script>
+    <script src="/scripts/userform.js"></script>
+    <script src="/scripts/twillo.js"></script>
 </body>
 </html>
