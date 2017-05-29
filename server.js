@@ -53,7 +53,7 @@ app.use(express.static("public"));
 
 app.use("/", Routes(knex));
 
-app.use("/", twilioRoutes());
+app.use("/call", twilioRoutes());
 
 
 

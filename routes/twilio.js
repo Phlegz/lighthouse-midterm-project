@@ -13,27 +13,27 @@ const client = twilio(accountSid, authToken);
 const router  = express.Router();
 
 module.exports = () => {
-  twilioNum = process.env.TWILIO_NUM;
+  const  twilioNum = process.env.TWILIO_NUM;
 
   // route to handle twilio post request
-  router.post("/call/twiml", (req, res) => {
+  router.post("/twiml", (req, res) => {
     res.render("twiml");
   });
   // route to handle post request when customer place an order and inform Twilio to call the restaurant
-  router.post("/call", (req, res) => {
+  router.post("/", (req, res) => {
+    console.log('here');
     client.calls.create({
-      url: "https://bd431dee.ngrok.io/call/twiml",
+      url: "https://b6af5a5d.ngrok.io/call/twiml",  //TODO change the url accordingly
       to: "+17788772010",
       from: twilioNum
     }, function(err, call) {
-      // process.stdout.write(call.sid);
       if(err){
         console.log(err);
         res.status(500).send(err);
         return;
       }
     });
-    res.redirect("orderconfirmation").end();
+    return;
   });
 
   // Twilio send message to customers
