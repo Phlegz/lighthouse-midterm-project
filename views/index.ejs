@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Home Page</title>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bali Buda</title>
+	
+	<link href="/styles/layout.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 
-    <link rel="stylesheet" href="/styles/layout.css">
+	<script src="/vendor/jquery-3.0.0.js"></script>
+</head>
+<body>
+	<% include partials/_navbar.ejs %>
 
-    <script src="/vendor/jquery-3.0.0.js"></script>
-    <script src="/scripts/app.js"></script>
-  </head>
+	<div class="restaurant-image"><img src="/images/restaurant-photo.png"></div>
 
-  <body>
-    <h1>Hello World!</h1>
-  </body>
+	<main class="menu-container">
+		<section class="sidenav">
+			<a href="#appetizer">Appetizers</a><br>
+			<a href="#main">Main Dishes</a><br>
+			<a href="#dessert">Dessert</a><br>
+			<a href="#beverage">Beverages</a>
+		</section>
+			<% include partials/_menu.ejs %>
+		<section>
+			<% include partials/_userform.ejs %>
+		</section>
+		<section>
+			<% include partials/_ordersummary.ejs %>
+		</section>
+	</main>
+	<script src="/scripts/app.js"></script>
+	<script src="/scripts/userform.js"></script>
+	<script src="/scripts/twillo.js"></script>
+</body>
 </html>
+

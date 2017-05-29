@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <Response>
+    <Gather numDigits="3" finishOnKey="#" action="/call/message">
+        <%orderSummary.forEach((order) => { %>
+          <Say>you have an order of <%= order.quantity%> <%=order.name%></Say>
+        <%}) %>
+        <Say>Please type the estimated time of completion on your key pad</Say>
+    </Gather>
+  </Response>

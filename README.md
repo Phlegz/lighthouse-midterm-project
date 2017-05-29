@@ -1,17 +1,36 @@
-## Getting Started
+# Midterm Project
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Run migrations: `npm run knex migrate:latest`
-  - Check the migrations folder to see what gets created in the DB
-6. Run the seed: `npm run knex seed:run`
-  - Check the seeds file to see what gets seeded in the DB
-7. Run the server: `npm run local`
-8. Visit `http://localhost:8080/`
+A simple restaurant ordering app that allows users to select their dishes and confirm their payment method with the delivery driver. On completion of the order, we used a Twilio API to send the order to the restaurant over the telephone and allow them to confirm and communicate the time to the customer. This full-stack project used HTML, CSS, JS, jQuery and AJAX, Express, and Knex.
+
+## Final Product 
+
+!["Screenshot of the home page"](https://github.com/Phlegz/lighthouse-midterm-project/blob/final/public/images/home.png)
+!["Screenshot of the menu"](https://github.com/Phlegz/lighthouse-midterm-project/blob/final/public/images/menu.png)
+!["Screenshot of customer form"](https://github.com/Phlegz/lighthouse-midterm-project/blob/final/public/images/orderform.png)
+!["Screenshot of order confirmation page"](https://github.com/Phlegz/lighthouse-midterm-project/blob/final/public/images/confirmation-form.png)
 
 ## Dependencies
 
-- Node 5.10.x or above
-- NPM 3.8.x or above
+-   Node 5.10.x or above
+-   NPM 3.8.x or above
+-   Express
+-   Node 5.10.x or above
+-   Body-parser
+-   Express
+-   Knex
+-   Knex-logger
+-   Morgan
+
+
+## Getting Started
+
+-   Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
+-   Update the .env file with your correct local information
+-   Install dependencies: `npm i`
+-   Run migrations: `npm run knex migrate:latest`
+-   Check the migrations folder to see what gets created in the DB
+-   Run the seed: `npm run knex seed:run`
+-   Check the seeds file to see what gets seeded in the DB
+-   Run the server: `npm run local`
+-   Visit `http://localhost:8080/`
+
