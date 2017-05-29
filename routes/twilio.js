@@ -7,7 +7,7 @@ const twilio     = require('twilio');
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken  = process.env.TWILIO_AUTH_TOKEN;
 const twilioNum = process.env.TWILIO_NUM;
-const restNum = process.env.REST_NUM;
+const restNum = process.env.REST_PHONE_NUM;
 const ngrokHost = process.env.NGROK_HOST;
 
 const client     = twilio(accountSid, authToken);
