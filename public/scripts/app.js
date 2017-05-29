@@ -11,7 +11,7 @@ function calculateTotalOrder(order) {
     tax = subTotal * taxRates;
     total = Math.round(subTotal + tax);
   })
-  return total;
+  console.log(total);
 }
 
 $(function() {
@@ -20,8 +20,8 @@ function renderOrder() {
   function makeLineItemHTML(item) {
     var name = decodeURIComponent(item.name);
     var html = `
-        <div>${escape(item.qty)} ${name} ${escape(item.price/100)}
-        <img class= "plus" src="/images/plus.png" data-id="${item.id}" height="10px"><img class= "minus" src="/images/minus.png" data-id="${item.id}" height="10px">
+        <div class="dish" >${escape(item.qty)} ${name} ${escape(item.price/100)}
+        <img class= "plus" src="/images/plus.png" data-id="${item.id}" height="10px">  <img class= "minus" src="/images/minus.png" data-id="${item.id}" height="10px">
         </div>
     `;
     return html;
@@ -64,6 +64,7 @@ function renderOrder() {
 
   submitForm();
 
+
   var order = {};
 
   if (localStorage.order) {
@@ -80,6 +81,7 @@ function renderOrder() {
         delete order[id];
 
       }
+
     } else {
       order[id] = {
       id,
@@ -96,6 +98,7 @@ function renderOrder() {
     event.preventDefault();
     orderIncrement(this.dataset, 1);
   });
+
   $('body').on('click', '.plus', function(event) {
     event.preventDefault();
     orderIncrement(this.dataset, 1);
@@ -105,4 +108,18 @@ function renderOrder() {
     event.preventDefault();
     orderIncrement(this.dataset, -1);
   });
+
+
+
+  $(document).scroll(function() {
+    var y = $(document).scrollTop(), //get page y value
+        header = $(".sidenav"); // your div id
+    if(y >= 600)  {
+        header.css({position: "fixed", "top" : "0", "left" : "0", "padding-top": ".55em"});
+    } else {
+        header.css("position", "static");
+    }
+});
+
+
 });
