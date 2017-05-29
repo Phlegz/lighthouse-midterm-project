@@ -11,7 +11,7 @@ const sass        = require("node-sass-middleware");
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 
-const uuidV4 = require ("uuid/v4");
+const uuidV4 = require("uuid/v4");
 
 // const keyPublishable = process.env.PUBLISHABLE_KEY;
 // const keySecret = process.env.SECRET_KEY;
@@ -48,13 +48,9 @@ app.use("/styles", sass({
 
 app.use(express.static("public"));
 
-// Mount all resource routes
-// app.get("/", (req, res) => {
-//   res.render("index");
-// })
-
+// Middleware to handle routes relating to rendering the front page and submit order
 app.use("/", Routes(knex));
-
+// Middleware to handle Twilio routes
 app.use("/call", twilioRoutes(knex));
 
 app.listen(PORT, () => {
