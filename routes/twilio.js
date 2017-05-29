@@ -32,7 +32,7 @@ module.exports = (knex) => {
 
   router.post("/", (req, res) => {
     client.calls.create({
-      url: "https://8fe05f22.ngrok.io/call/twiml",  //TODO change the url accordingly
+      url: "https://51f904b2.ngrok.io/call/twiml",  //TODO change the url accordingly
       to: "+17788772010",    //This is technically the restaurant phone number
       from: twilioNum
     }, function(err, call) {

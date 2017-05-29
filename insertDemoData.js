@@ -111,6 +111,7 @@ knex
         name:"Fresh Juices" ,
         price_in_cents: 700,
         description: "Pineapple, papaya, avocado, banana, mango, passion fruit or mixed",
+        image_url: "http://www.berkeleywellness.com/sites/default/files/400-06365527c-Masterfile-Boarding1Now.jpg",
         restaurant_id: Number(restResults[0]),
         dish_genre_id: genres_object.beverage
       },
@@ -118,6 +119,7 @@ knex
         name:"Lassies" ,
         price_in_cents: 1000,
         description: "Plane, honey, cardomom, fruit, vanilla or blueberry",
+        image_url: "http://www.vegrecipesofindia.com/wp-content/uploads/2010/05/mango-lassi-recipe7.jpg",
         restaurant_id: Number(restResults[0]),
         dish_genre_id: genres_object.beverage
       },
@@ -125,6 +127,7 @@ knex
         name:"Goji Turmeric Super Duper" ,
         price_in_cents: 1000,
         description: "Goji juice, fresh turmeric, tamarind, lemon, black pepper and honey",
+        image_url: "http://www.coconutandberries.com/wp-content/uploads/2014/09/DSC_0246_thumb.jpg",
         restaurant_id: Number(restResults[0]),
         dish_genre_id: genres_object.beverage
       },
@@ -138,7 +141,7 @@ knex
       {
         name:"Fruits with mango ice cream" ,
         price_in_cents: 600,
-        image_url: "http://www.bakepedia.com/wp-content/uploads/2014/07/Papaya-banana-frozen-yogurt-recipe.jpg",
+        image_url: "http://www.monikaicecream.com/img/gallery/fruit%20salad/img3.jpg",
         restaurant_id: Number(restResults[0]),
         dish_genre_id: genres_object.dessert
       },
