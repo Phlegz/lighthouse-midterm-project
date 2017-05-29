@@ -6,7 +6,8 @@ $(function() {
   $(".continue-button").click(function() {
     $(".edit-order").show();
     $(".userdetails").show();
-    $(".menu-container").hide();
+    $(".sidenav").hide();
+    $(".menu").hide();
     $(".continue-button").hide();
     $(".plus").hide();
     $(".minus").hide();
@@ -17,9 +18,10 @@ $(function() {
   });
   //if the edit button is pressed the menu comes back and the form hides
   $(".edit-order").click(function(){
-    $(".userdetails").hide();
     $(".edit-order").hide();
-    $(".menu-container").show();
+    $(".userdetails").hide();
+    $(".sidenav").show();
+    $(".menu").show();
     $(".continue-button").show();
     $(".plus").show();
     $(".minus").show();

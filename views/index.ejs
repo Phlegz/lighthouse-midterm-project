@@ -3,42 +3,33 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
 	<title>Bali Buda</title>
 	
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Yeseva+One" rel="stylesheet">
 	<link href="/styles/layout.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 
 	<script src="/vendor/jquery-3.0.0.js"></script>
 </head>
 <body>
-	<%- include partials/_navbar.ejs %>
-	<div class="restaurant-image"><img src="/images/restaurant-image.png"></div>
-	<div class="restaurant-info">
-		<h3>Contact Us</h3>
-		<p>Address: Jl. Jembawan 1 No.1, Ubud, Gianyar, Kabupaten Gianyar, Bali 80571, Indonesia</p>
-		<p>Phone Number: +62 361 976324</p>
-		<p>Hours: 7 a.m. - 10 p.m. Daily</p>
-	</div>
-		<section class="icon-key">
-			<h5><img src="/images/vegan_icon.png" style="height:28px;">  Vegan
-			<img src="/images/vegetarian_icon.png" style="height:28px;">  Vegtarian
-			<img src="/images/glutenfree_icon.png" style="height:28px;">  Gluten Free
-			<img src="/images/oceanwise_icon.png" style="height:28px;">  Ocean Wise</h5>
-		</section>
-		<main class="menu-container">
+	<% include partials/_navbar.ejs %>
+	<div class="restaurant-image"><img src="/images/restaurant-photo.png"></div>
+	<main class="menu-container">
 		<section class="sidenav">
-			<a href="#appies">Appetizers</a><br>
-			<a href="#mains">Main Dishes</a><br>
-			<a href="#desserts">Dessert</a><br>
-			<a href="#beverages">Beverages</a>
+			<a href="#appetizer">Appetizers</a><br>
+			<a href="#main">Main Dishes</a><br>
+			<a href="#dessert">Dessert</a><br>
+			<a href="#beverage">Beverages</a>
 		</section>
-		<%- include partials/_menu.ejs %>
-		<%- include partials/_ordersummary.ejs %>
+		<% include partials/_menu.ejs %>
+		</section>
+		<section>
+		<% include partials/_userform.ejs %>
+		</section>
+		<section>
+		<% include partials/_ordersummary.ejs %>
+		</section>
 	</main>
-	<%- include partials/_userform.ejs %>
-
 	<script src="/scripts/app.js"></script>
 	<script src="/scripts/userform.js"></script>
 	<script src="/scripts/twillo.js"></script>
