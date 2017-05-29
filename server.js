@@ -20,7 +20,7 @@ const uuidV4 = require ("uuid/v4");
 // Seperated Routes for each Resource
 const Routes = require("./routes/routes");
 
-//const twilioRoutes = require("./routes/twilio");
+const twilioRoutes = require("./routes/twilio");
 
 
 const app = express();

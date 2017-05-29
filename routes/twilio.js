@@ -47,7 +47,7 @@ module.exports = (knex) => {
 
   // Twilio sends message to customers
   router.post("/message", (req, res) => {
-    const id = knex('orders').max('id');
+    const id = knex('orders').max('id')
     .returning('id')
     .then((id) => {
       const orderId = id[0].max;
