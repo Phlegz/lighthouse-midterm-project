@@ -4,7 +4,10 @@ A simple restaurant ordering app that allows users to select their dishes and co
 
 ## Final Product 
 
-!["Screenshot of the home page"](https://)
+!["Screenshot of the home page"](https://github.com/Phlegz/lighthouse-midterm-project/blob/final/public/images/home.png)
+!["Screenshot of the menu"](https://github.com/Phlegz/lighthouse-midterm-project/blob/final/public/images/menu.png)
+!["Screenshot of customer form"](https://github.com/Phlegz/lighthouse-midterm-project/blob/final/public/images/orderform.png)
+!["Screenshot of order confirmation page"](https://github.com/Phlegz/lighthouse-midterm-project/blob/final/public/images/confirmation-form.png)
 
 ## Dependencies
 
