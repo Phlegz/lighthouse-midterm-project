@@ -24,15 +24,42 @@
         <div class="order-items">
 			<section class='items'>
 				  <%orderSummary.forEach((order) => { %>
-                  <h4> Order No. 000 <%= order.order_id%></h4>
-                    <h4><%= order.quantity%> <%= order.name%></h4>         
+                  <!-- <h4> Order No. 000 <%= order.order_id%></h4> -->
+                    <h4><%= order.quantity%> <%= order.name%> $<%= order.price_in_cents/100%></h4>
+                     <%}) %>
          </div>
        <section id="totals">
-		<h5 class="subtotal"><label>SUBTOTAL</label></h5>
-		<h5 class="tax"><label>TAX</label></h5>
-		<h4 class="total"><label>TOTAL</label></h4>
+		<h5 class="subtotal"><label>SUBTOTAL</label>
+      <%
+      var arr= orderSummary.map((item)=>{return (item.quantity*item.price_in_cents)})
+      var subtotal = arr.reduce(function(a,b){return a+b})
+      var tax = (subtotal*7)/100
+      var total = subtotal + tax
+      %>
+      $<%= (subtotal/100).toFixed(1)%>
+    </h5>
+
+		<h5 class="tax"><label>TAX</label>
+      <%
+      var arr= orderSummary.map((item)=>{return (item.quantity*item.price_in_cents)})
+      var subtotal = arr.reduce(function(a,b){return a+b})
+      var tax = (subtotal*7)/100
+      var total = subtotal + tax
+      %>
+      $<%= (tax/100).toFixed(1)%>
+    </h5>
+		<h4 class="total"><label>TOTAL</label>
+      <%
+      var arr= orderSummary.map((item)=>{return (item.quantity*item.price_in_cents)})
+      var subtotal = arr.reduce(function(a,b){return a+b})
+      var tax = (subtotal*7)/100
+      var total = subtotal + tax
+      %>
+      $<%= (total/100).toFixed(1)%>
+    </h4>
 	</section>
- <%}) %>
+	</section>
+
     <script src="/scripts/app.js"></script>
     <script src="/scripts/userform.js"></script>
     <script src="/scripts/twillo.js"></script>
