@@ -19,11 +19,9 @@ const uuidV4 = require ("uuid/v4");
 
 // Seperated Routes for each Resource
 const Routes = require("./routes/routes");
-<<<<<<< HEAD
+
 //const twilioRoutes = require("./routes/twilio");
-=======
-const twilioRoutes = require("./routes/twilio");
->>>>>>> backend/route
+
 
 const app = express();
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -53,11 +51,9 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/", Routes(knex));
 
-<<<<<<< HEAD
+
 //app.use("/twilio", twilioRoutes())
-=======
-app.use("/twilio", twilioRoutes())
->>>>>>> backend/route
+
 
 
 app.listen(PORT, () => {

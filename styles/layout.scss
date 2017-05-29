@@ -1,5 +1,4 @@
 $baliRed: #ed1c24;
-<<<<<<< HEAD
 $lightGrey: #d3d3d3;
 $darkGrey: #606058;
 $background: white;
@@ -229,43 +228,4 @@ section .userdetails {
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
     max-height: 18em;
-=======
-$green: #5dd1a1;
-$purple: #9e5dd1;
-$yellow: #dad317;
-$lightGrey: #d3d3d3; 
-$darkGrey: #9b9b9b;
-
-body {
-  font-family: 'Yanone Kaffeesatz', sans-serif;
-  background-color: $lightGrey;
-}
-
-.slideshow {
-  background-color: white;
-}
-
-.menu-container {
-  .side-nav {
-      a {
-        text-decoration: none;
-        color: $darkGrey;
-        float: right;
-        margin: 10px;
-      }
-  }
-  .icon-key {
-    background-color: white;
-  }
-}
-
-.menu {
-    h2 {
-      color: $green;
-    }
-
-    .dish-row {
-      background-color: $lightGrey;
-    }
->>>>>>> backend/route
 }
