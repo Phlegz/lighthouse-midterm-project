@@ -7,6 +7,7 @@ const twilio     = require('twilio');
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken  = process.env.TWILIO_AUTH_TOKEN;
 const  twilioNum = process.env.TWILIO_NUM;
+const restNum    = process.env.REST_PHONE_NUM
 
 const client     = twilio(accountSid, authToken);
 const router     = express.Router();
@@ -33,7 +34,7 @@ module.exports = (knex) => {
   router.post("/", (req, res) => {
     client.calls.create({
       url: "https://8fe05f22.ngrok.io/call/twiml",  //TODO change the url accordingly
-      to: "+17788772010",    //This is technically the restaurant phone number
+      to: restNum,    //This is technically the restaurant phone number
       from: twilioNum
     }, function(err, call) {
       if(err){
