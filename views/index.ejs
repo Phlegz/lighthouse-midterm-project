@@ -13,13 +13,31 @@
 </head>
 <body>
 	<% include partials/_navbar.ejs %>
+<<<<<<< HEAD
 	<div class="restaurant-image"><img src="/images/restaurant-photo.png"></div>
+=======
+	<div class="restaurant-image"><img src="/images/restaurant-image.png" style="height:428px;"></div>
+	<div class="restaurant-info">
+		<p>Address: Jl. Jembawan 1 No.1, Ubud, Gianyar, Kabupaten Gianyar, Bali 80571, Indonesia</p>
+		<p>Phone Number: +62 361 976324</p>
+		<p>Hours: 7 a.m. - 10 p.m. Daily</p>
+	</div>
+>>>>>>> backend/route
 	<main class="menu-container">
 		<section class="sidenav">
 			<a href="#appetizer">Appetizers</a><br>
 			<a href="#main">Main Dishes</a><br>
 			<a href="#dessert">Dessert</a><br>
 			<a href="#beverage">Beverages</a>
+<<<<<<< HEAD
+=======
+		</section>
+		<section class="icon-key">
+			<img src="/images/vegan_icon.png" style="height:28px;"><h5>Vegan</h5>
+			<img src="/images/vegetarian_icon.png" style="height:28px;"><h5>Vegtarian</h5>
+			<img src="/images/glutenfree_icon.png" style="height:28px;"><h5>Gluten Free</h5>
+			<img src="/images/oceanwise_icon.png" style="height:28px;"><h5>Ocean Wise</h5>
+>>>>>>> backend/route
 		</section>
 		<% include partials/_menu.ejs %>
 		</section>
@@ -30,7 +48,12 @@
 		<% include partials/_ordersummary.ejs %>
 		</section>
 	</main>
+<<<<<<< HEAD
 
+=======
+	<% include partials/_userform.ejs %>
+	<% include partials/_ordersummary.ejs %>
+>>>>>>> backend/route
 	<script src="/scripts/app.js"></script>
 	<script src="/scripts/userform.js"></script>
 	<script src="/scripts/twillo.js"></script>
