@@ -3,8 +3,12 @@
 // Step1: create the order in the database with all the order fields firstName -> totalPaid
 // Step2: get the id from the new created order
 // Step3: for each element in lineItems create new line_item in database with dishId and orderId and quantity
-
 const express = require("express");
+var request = require('request');
+var rp = require('request-promise');
+
+
+
 
 module.exports = (knex) => {
   const router  = express.Router();
@@ -31,6 +35,10 @@ module.exports = (knex) => {
 
   // Checkout
   router.post("/", (req, res) => {
+    var options = {
+        method: 'post',
+        url:`${req.headers.referer}call`
+    }
     const order = JSON.parse(req.body.order);
     knex.select('id').from('restaurants').orderBy('id').limit(1)
     .then((rows) => {
@@ -63,8 +71,17 @@ module.exports = (knex) => {
         knex('line_items').insert(newArr)
         .returning('order_id')
         .then((id) => {
+          return Promise.all([
+            id,
+            request.post(options,function (error, response, body){
+                // console.log(response);
+            })
+          ])
+        })
+        .then((all) => {
+          const id = all[0];
           res.redirect(`/order/${id[0]}`);
-        });
+        })
       });
 
     });
