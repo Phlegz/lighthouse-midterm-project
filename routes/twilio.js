@@ -17,21 +17,22 @@ module.exports = (knex) => {
 
   // route to handle twilio post request
   router.post("/twiml", (req, res) => {
-    const id = knex('orders').max('id')  //extracts the last order id from db
+    const id = knex('orders').max('id')
     .returning('id')
     .then((id) => {
       const orderId = id[0].max;
-      const table1 = knex('line_items')   //creates a table first and then joins it
-      .select('dish_id','quantity')
-      .where('order_id',orderId)
-      .join('dishes','dishes.id','=','dish_id')
-      .select('dish_id','quantity','dishes.name','price_in_cents')
+      const table1 = knex('line_items')
+      .select('dish_id', 'quantity')
+      .where('order_id', orderId)
+      .join('dishes', 'dishes.id', '=', 'dish_id')
+      .select('dish_id', 'quantity', 'dishes.name', 'price_in_cents')
       .then((result) => {
-        res.render("twiml", {orderSummary:result});
-      })
-    })
+        res.render("twiml", {orderSummary: result});
+      });
+    });
   });
 
+  // post request to call restaurant
   router.post("/", (req, res) => {
     client.calls.create({
       url: ngrokHost,
@@ -53,7 +54,7 @@ module.exports = (knex) => {
     .returning('id')
     .then((id) => {
       const orderId = id[0].max;
-      const phone = knex('orders').select('phone').where('id',orderId)
+      const phone = knex('orders').select('phone').where('id', orderId)
       .returning('phone')
       .then((phone) => {
         client.messages.create({
@@ -68,8 +69,8 @@ module.exports = (knex) => {
         });
         res.setHeader("Content-Type", "text/xml");
         res.send(`<?xml version="1.0" encoding="UTF-8"?><Response><Say>thank you, have a good day</Say></Response>`);
-      })
-    })
+      });
+    });
   });
 
   return router;
