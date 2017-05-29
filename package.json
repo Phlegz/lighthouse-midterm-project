@@ -20,7 +20,6 @@
     "knex": "^0.13.0",
     "node-sass-middleware": "^0.9.8",
     "pg": "^6.0.2",
-    "request-promise": "^4.2.1",
     "request": "^2.81.0",
     "stripe": "^4.20.0",
     "twilio": "^3.3.0",

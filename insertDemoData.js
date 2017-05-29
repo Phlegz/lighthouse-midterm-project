@@ -156,7 +156,6 @@ knex
     .then(()=>{
       knex.destroy();
     });
-
   });
 
 });

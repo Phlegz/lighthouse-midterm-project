@@ -2,7 +2,6 @@
 
 const express = require("express");
 var request = require('request');
-var rp = require('request-promise');
 
 module.exports = (knex) => {
   const router  = express.Router();
@@ -25,6 +24,7 @@ module.exports = (knex) => {
       });
       res.render('index', {dishes: categorizedDishes});
     });
+
   });
 
   // Checkout
@@ -94,7 +94,6 @@ module.exports = (knex) => {
     });
   });
 
-
   return router;
-};
 
+};
