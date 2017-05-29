@@ -14,6 +14,8 @@ function calculateTotalOrder(order) {
   return total;
 }
 
+$(function() {
+
 function renderOrder() {
   function makeLineItemHTML(item) {
     var name = decodeURIComponent(item.name);
@@ -45,8 +47,6 @@ function renderOrder() {
   $('#totals .tax span').text((tax/100).toFixed(2));
   $('#totals .total span').text((total/100).toFixed(2));
 }
-
-$(function() {
 
   function submitForm() {
     const $form = $('form');
