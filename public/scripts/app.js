@@ -76,6 +76,7 @@ $(function() {
     orderIncrement(this.dataset, -1);
   });
 
+
   $(document).scroll(function() {
     var y = $(document).scrollTop(), //get page y value 
         header = $(".sidenav"); // your div id
@@ -85,6 +86,7 @@ $(function() {
         header.css("position", "static");
     }
 });
+
 
 });
 
