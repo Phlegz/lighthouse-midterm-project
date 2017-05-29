@@ -14,54 +14,53 @@
 </head>
 
 <body>
-    <% include partials/_navbar.ejs %>
+  <% include partials/_navbar.ejs %>
 
-    <div class="restaurant-image"><img src="/images/restaurant-photo.png"></div>
-    <section class="orderconfirmation">
-    <h3>ORDER CONFIRMATION</h3>
-    <section id="order-container">
+  <div class="restaurant-image"><img src="/images/restaurant-photo.png"></div>
+  <section class="orderconfirmation">
+  <h3>ORDER CONFIRMATION</h3>
+  <section id="order-container">
 
-        <div class="order-items">
-			<section class='items'>
-				  <%orderSummary.forEach((order) => { %>
-                  <!-- <h4> Order No. 000 <%= order.order_id%></h4> -->
-                    <h4><%= order.quantity%> <%= order.name%> $<%= order.price_in_cents/100%></h4>
-                     <%}) %>
-         </div>
-       <section id="totals">
-		<h5 class="subtotal"><label>SUBTOTAL</label>
-      <%
-      var arr= orderSummary.map((item)=>{return (item.quantity*item.price_in_cents)})
-      var subtotal = arr.reduce(function(a,b){return a+b})
-      var tax = (subtotal*7)/100
-      var total = subtotal + tax
-      %>
-      $<%= (subtotal/100).toFixed(1)%>
-    </h5>
+    <div class="order-items">
+      <section class='items'>
+        <%orderSummary.forEach((order) => { %>
+        <!-- <h4> Order No. 000 <%= order.order_id%></h4> -->
+          <h4><%= order.quantity%> <%= order.name%> $<%= order.price_in_cents/100%></h4>
+        <%}) %>
+    </div>
+    <section id="totals">
+      <h5 class="subtotal"><label>SUBTOTAL</label>
+        <%
+        var arr= orderSummary.map((item)=>{return (item.quantity*item.price_in_cents)})
+        var subtotal = arr.reduce(function(a,b){return a+b})
+        var tax = (subtotal*7)/100
+        var total = subtotal + tax
+        %>
+        $<%= (subtotal/100).toFixed(1)%>
+      </h5>
 
-		<h5 class="tax"><label>TAX</label>
-      <%
-      var arr= orderSummary.map((item)=>{return (item.quantity*item.price_in_cents)})
-      var subtotal = arr.reduce(function(a,b){return a+b})
-      var tax = (subtotal*7)/100
-      var total = subtotal + tax
-      %>
-      $<%= (tax/100).toFixed(1)%>
-    </h5>
-		<h4 class="total"><label>TOTAL</label>
-      <%
-      var arr= orderSummary.map((item)=>{return (item.quantity*item.price_in_cents)})
-      var subtotal = arr.reduce(function(a,b){return a+b})
-      var tax = (subtotal*7)/100
-      var total = subtotal + tax
-      %>
-      $<%= (total/100).toFixed(1)%>
-    </h4>
-	</section>
-	</section>
-
-    <script src="/scripts/app.js"></script>
-    <script src="/scripts/userform.js"></script>
-    <script src="/scripts/twillo.js"></script>
+      <h5 class="tax"><label>TAX</label>
+        <%
+        var arr = orderSummary.map((item)=>{return (item.quantity*item.price_in_cents)});
+        var subtotal = arr.reduce(function(a,b){return a+b});
+        var tax = (subtotal*7) / 100;
+        var total = subtotal + tax;
+        %>
+        $<%= (tax / 100).toFixed(1)%>
+      </h5>
+      <h4 class="total"><label>TOTAL</label>
+        <%
+        var arr= orderSummary.map((item)=>{return (item.quantity*item.price_in_cents)});
+        var subtotal = arr.reduce(function(a,b){return a+b});l
+        var tax = (subtotal*7) / 100;
+        var total = subtotal + tax;
+        %>
+        $<%= (tota / 100).toFixed(1)%>
+      </h4>
+    </section>
+  </section>
+  <script src="/scripts/app.js"></script>
+  <script src="/scripts/userform.js"></script>
+  <script src="/scripts/twillo.js"></script>
 </body>
 </html>
