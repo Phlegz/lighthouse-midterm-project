@@ -12,16 +12,27 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 const router  = express.Router();
 
-module.exports = () => {
+module.exports = (knex) => {
   const  twilioNum = process.env.TWILIO_NUM;
 
   // route to handle twilio post request
   router.post("/twiml", (req, res) => {
-    res.render("twiml");
+    const id = knex('orders').max('id')
+    .returning('id')
+    .then((id) => {
+      const orderId = id[0].max
+      const table1 = knex('line_items')
+      .select('dish_id','quantity')
+      .where('order_id',orderId)
+      .join('dishes','dishes.id','=','dish_id')
+      .select('dish_id','quantity','dishes.name','price_in_cents')
+
+      .then((result) => {
+        res.render("twiml", {orderSummary:result});
+      })
+    })
   });
-  // route to handle post request when customer place an order and inform Twilio to call the restaurant
   router.post("/", (req, res) => {
-    console.log('here');
     client.calls.create({
       url: "https://b6af5a5d.ngrok.io/call/twiml",  //TODO change the url accordingly
       to: "+17788772010",

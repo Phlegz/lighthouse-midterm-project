@@ -1,14 +1,8 @@
 "use strict";
-// TODO:
-// Step1: create the order in the database with all the order fields firstName -> totalPaid
-// Step2: get the id from the new created order
-// Step3: for each element in lineItems create new line_item in database with dishId and orderId and quantity
+
 const express = require("express");
 var request = require('request');
 var rp = require('request-promise');
-
-
-
 
 module.exports = (knex) => {
   const router  = express.Router();
